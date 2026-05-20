@@ -1,0 +1,149 @@
+/* ============================================================
+   The CFO Gap — Dashboard Styles
+   Dark mode, responsive, no frameworks
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-primary: #0d1117;
+  --bg-card: #161b22;
+  --bg-card-hover: #1c2129;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --accent: #f6c440;            /* canary yellow */
+  --green: #3fb950;
+  --red: #f85149;
+  --amber: #d29922;
+  --neutral: #8b949e;
+  --border: #30363d;
+  --border-hover: #484f58;
+  --radius: 8px;
+  --max-width: 1200px;
+  --transition: 0.25s ease;
+}
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+
+/* --- Header --- */
+.site-header {
+  padding: 3rem 0 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.site-title { font-size: 2.25rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+.site-subtitle { font-size: 1.125rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto 0.75rem; }
+.last-updated { font-size: 0.875rem; color: var(--text-secondary); }
+
+/* --- Hero Score --- */
+.hero-score { text-align: center; padding: 3rem 1rem 2rem; }
+.hero-inner { max-width: 700px; margin: 0 auto; }
+.score-display { display: flex; align-items: baseline; justify-content: center; gap: 0.5rem; }
+.score-number { font-size: 6rem; font-weight: 700; color: var(--accent); line-height: 1; }
+.score-label { font-size: 1.5rem; color: var(--text-secondary); }
+.phase-label { font-size: 1.25rem; font-weight: 600; margin-top: 0.5rem; }
+.phase-description { font-size: 1rem; color: var(--text-secondary); margin-top: 0.5rem; }
+.score-meta { padding: 1rem 0 0.5rem; }
+
+/* --- Section --- */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* --- Chart --- */
+.chart-section { padding: 1rem 0 2rem; }
+.chart-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; }
+
+/* --- Sub-sector table --- */
+.table-section { padding: 1rem 0 2rem; }
+.subsector-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.subsector-table th, .subsector-table td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+.subsector-table th { background: var(--bg-card-hover); color: var(--text-secondary); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.subsector-table tr:last-child td { border-bottom: 0; }
+.subsector-table tbody tr:hover { background: var(--bg-card-hover); }
+.subsector-name { font-weight: 500; }
+.subsector-numeric { text-align: right; font-variant-numeric: tabular-nums; }
+.ratio-bar { display: inline-block; height: 8px; background: var(--border); border-radius: 4px; vertical-align: middle; margin-left: 0.5rem; min-width: 80px; }
+.ratio-bar-fill { display: block; height: 100%; border-radius: 4px; background: var(--accent); }
+.ratio-bar-fill.high  { background: var(--red); }
+.ratio-bar-fill.mid   { background: var(--amber); }
+.ratio-bar-fill.low   { background: var(--green); }
+
+/* --- Footer --- */
+.site-footer {
+  margin-top: 3rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+.site-footer a { color: var(--text-secondary); text-decoration: underline; }
+.site-footer a:hover { color: var(--accent); }
+.canaries-row { display: flex; gap: 1.25rem; justify-content: center; flex-wrap: wrap; margin: 0.5rem 0 0.75rem; }
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  .site-title { font-size: 1.75rem; }
+  .score-number { font-size: 4rem; }
+  .container { padding: 0 1rem; }
+  .subsector-table th, .subsector-table td { padding: 0.5rem 0.6rem; font-size: 0.85rem; }
+}
+
+/* --- Comp Pulse: delta cards + chart caption --- */
+.delta-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.delta-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  text-align: center;
+  min-width: 150px;
+}
+.delta-label { font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.04em; }
+.delta-value { font-size: 1.75rem; font-weight: 700; margin-top: 0.5rem; font-variant-numeric: tabular-nums; color: var(--text-secondary); }
+.delta-value.up    { color: var(--green); }
+.delta-value.down  { color: var(--red); }
+.delta-value.flat  { color: var(--text-secondary); }
+.chart-caption {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}

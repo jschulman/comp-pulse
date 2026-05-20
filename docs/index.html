@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comp Pulse</title>
+  <meta name="description" content="Tracking compensation drift in crypto-native middle-market hiring — directional data only, never absolute salaries. Open data, no tracking.">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">Comp Pulse</h1>
+      <p class="site-subtitle">Tracking compensation drift in crypto-native middle-market hiring — direction, not dollars</p>
+      <p class="last-updated" id="last-updated">Last updated: loading…</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Index value + deltas -->
+    <section class="hero-score" id="hero-section">
+      <div class="hero-inner">
+        <div class="score-display">
+          <div class="score-number" id="hero-score">—</div>
+          <div class="score-label">index</div>
+        </div>
+        <div class="score-meta">
+          <div class="phase-label" id="hero-phase">Loading…</div>
+          <div class="phase-description" id="hero-description"></div>
+        </div>
+      </div>
+
+      <!-- Three deltas side by side -->
+      <div class="delta-row" id="delta-row">
+        <div class="delta-card">
+          <div class="delta-label">Week over week</div>
+          <div class="delta-value" id="delta-7d">—</div>
+        </div>
+        <div class="delta-card">
+          <div class="delta-label">Month over month</div>
+          <div class="delta-value" id="delta-30d">—</div>
+        </div>
+        <div class="delta-card">
+          <div class="delta-label">90 days</div>
+          <div class="delta-value" id="delta-90d">—</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Index time series -->
+    <section class="chart-section">
+      <h2 class="section-title">Comp Index Over Time</h2>
+      <div class="chart-wrap">
+        <canvas id="timeline-chart" height="240"></canvas>
+      </div>
+      <p class="chart-caption" id="chart-caption">Data begins 2026-05-20. Index anchored at 100 on that date.</p>
+    </section>
+
+    <!-- Disclosure rate sidecar -->
+    <section class="table-section">
+      <h2 class="section-title">Comp Disclosure Rate (meta-signal)</h2>
+      <table class="subsector-table" id="disclosure-table">
+        <thead>
+          <tr>
+            <th>Period</th>
+            <th class="subsector-numeric">Listings disclosing comp</th>
+            <th class="subsector-numeric">Disclosure rate</th>
+          </tr>
+        </thead>
+        <tbody id="disclosure-tbody">
+          <tr><td colspan="3" style="text-align:center;color:var(--text-secondary);padding:1.5rem;">Loading…</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>Part of <strong>The Crypto Canaries</strong></div>
+      <div class="canaries-row">
+        <a href="https://jschulman.github.io/cfo-gap">cfo-gap</a>
+        <a href="https://jschulman.github.io/crypto-tool-curve">crypto-tool-curve</a>
+        <a href="https://jschulman.github.io/compliance-canary">compliance-canary</a>
+        <a href="https://jschulman.github.io/comp-pulse">comp-pulse</a>
+      </div>
+      <div>Sibling to <strong>The Canaries</strong></div>
+      <div class="canaries-row">
+        <a href="https://jschulman.github.io/displacement-curve">displacement-curve</a>
+        <a href="https://jschulman.github.io/stablecoin-signal">stablecoin-signal</a>
+        <a href="https://jschulman.github.io/quantum-qanary">quantum-qanary</a>
+      </div>
+      <div style="margin-top:1rem;">
+        Methodology: <a href="https://github.com/jschulman/comp-pulse/blob/main/METHODOLOGY.md">METHODOLOGY.md</a> ·
+        Source: <a href="https://github.com/jschulman/comp-pulse">github.com/jschulman/comp-pulse</a> ·
+        MIT License
+      </div>
+      <div style="margin-top:0.5rem;">
+        &copy; 2026 <a href="https://jayschulman.com">Jay Schulman</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

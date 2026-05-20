@@ -1,0 +1,32 @@
+name: Refresh dashboard
+
+# Data updates are pushed to this repo by the upstream pipeline at /opt/ledger-signals
+# via `bun run canaries:publish`. This workflow exists as a placeholder for
+# post-processing (e.g., snapshot pruning, derived metrics) that we may add later.
+#
+# For now: on every push to main, validate that data/latest.json parses.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate data/latest.json
+        run: |
+          python3 -c "import json; json.load(open('data/latest.json')); print('latest.json: valid JSON')"
+      - name: Validate snapshot files
+        run: |
+          set -e
+          for f in data/snapshots/*.json; do
+            [ -f "$f" ] && python3 -c "import json; json.load(open('$f'))" && echo "$f: valid"
+          done
