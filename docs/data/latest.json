@@ -1,7 +1,7 @@
 {
   "metadata": {
     "source": "Comp Pulse",
-    "last_updated": "2026-06-03",
+    "last_updated": "2026-06-04",
     "baseline_date": "2026-05-20",
     "version": "1.0",
     "next_update": "daily at 03:00 America/Chicago",
@@ -12,7 +12,7 @@
     "delta_7d": 0,
     "delta_30d": 0,
     "delta_90d": 0,
-    "history_days": 16,
+    "history_days": 17,
     "label": "Comp Index (100 = 2026-05-20). Direction-only; absolute salary numbers are never published."
   },
   "timeseries": [
@@ -79,26 +79,30 @@
     {
       "date": "2026-06-03",
       "index": 100
+    },
+    {
+      "date": "2026-06-04",
+      "index": 100
     }
   ],
   "disclosure_history": [
     {
       "period": "today",
-      "n_with_comp": 80,
-      "n_open": 459,
-      "rate": 0.1743
+      "n_with_comp": 83,
+      "n_open": 457,
+      "rate": 0.1816
     },
     {
       "period": "7-day average",
-      "n_with_comp": 79,
-      "n_open": 462,
-      "rate": 0.1716
+      "n_with_comp": 80,
+      "n_open": 460,
+      "rate": 0.1738
     },
     {
       "period": "30-day average",
-      "n_with_comp": 75,
-      "n_open": 428,
-      "rate": 0.1578
+      "n_with_comp": 76,
+      "n_open": 429,
+      "rate": 0.1592
     }
   ]
 }
