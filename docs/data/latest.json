@@ -169,20 +169,20 @@
     {
       "period": "today",
       "n_with_comp": 282,
-      "n_open": 3158,
-      "rate": 0.0893
+      "n_open": 3082,
+      "rate": 0.0915
     },
     {
       "period": "7-day average",
       "n_with_comp": 272,
-      "n_open": 2993,
-      "rate": 0.091
+      "n_open": 2982,
+      "rate": 0.0914
     },
     {
       "period": "30-day average",
       "n_with_comp": 173,
-      "n_open": 1596,
-      "rate": 0.1379
+      "n_open": 1593,
+      "rate": 0.138
     }
   ]
 }
