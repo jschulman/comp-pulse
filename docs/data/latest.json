@@ -1,18 +1,18 @@
 {
   "metadata": {
     "source": "Comp Pulse",
-    "last_updated": "2026-06-29",
+    "last_updated": "2026-06-30",
     "baseline_date": "2026-05-20",
     "version": "1.0",
     "next_update": "daily at 03:00 America/Chicago",
     "note": "Index anchored at 100 on 2026-05-20. Deltas are versus trailing-window means. First 30 days produce mostly-flat deltas; canary becomes meaningful at 30 days, publishable as a trend at 90 days."
   },
   "headline": {
-    "index": 105,
-    "delta_7d": -0.0008,
-    "delta_30d": 0.0172,
-    "delta_90d": 0.0258,
-    "history_days": 42,
+    "index": 105.3,
+    "delta_7d": 0.0022,
+    "delta_30d": 0.0184,
+    "delta_90d": 0.0281,
+    "history_days": 43,
     "label": "Comp Index (100 = 2026-05-20). Direction-only; absolute salary numbers are never published."
   },
   "timeseries": [
@@ -183,26 +183,30 @@
     {
       "date": "2026-06-29",
       "index": 105
+    },
+    {
+      "date": "2026-06-30",
+      "index": 105.3
     }
   ],
   "disclosure_history": [
     {
       "period": "today",
-      "n_with_comp": 307,
-      "n_open": 3482,
-      "rate": 0.0882
+      "n_with_comp": 305,
+      "n_open": 3440,
+      "rate": 0.0887
     },
     {
       "period": "7-day average",
-      "n_with_comp": 290,
-      "n_open": 3206,
+      "n_with_comp": 294,
+      "n_open": 3253,
       "rate": 0.0904
     },
     {
       "period": "30-day average",
-      "n_with_comp": 209,
-      "n_open": 2057,
-      "rate": 0.1249
+      "n_with_comp": 217,
+      "n_open": 2156,
+      "rate": 0.1221
     }
   ]
 }
