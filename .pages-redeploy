@@ -1,0 +1,6 @@
+Marker file to force a fresh GitHub Pages deployment.
+
+The daily snapshot commit built successfully but its Pages deployment got
+stuck server-side ("Deployment failed, try again later"), and re-deploying
+the same commit SHA kept failing. This commit produces a new SHA so Pages
+can deploy cleanly. Safe to delete.
