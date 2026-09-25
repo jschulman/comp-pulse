@@ -1,95 +1,46 @@
 # Methodology
 
-How Comp Pulse is computed, what its limits are, and how to read its numbers honestly.
-
-## One question
-
-In which direction is crypto-native middle-market compensation drifting?
-
-## What gets published — and what doesn't
-
-**Published every day:**
-- The Comp Index value (anchored at 100 on the first data day, 2026-05-20)
-- Percentage deltas vs trailing 7-day, 30-day, and 90-day averages
-- The disclosure rate (what share of open listings include comp ranges)
-
-**Never published:**
-- Any specific company's salary range
-- A per-listing salary number
-- Median or absolute compensation in dollars
-- Sub-sector breakdowns with fewer than 10 disclosed comps (to prevent re-identification)
-
-The point of the canary is the *direction* of change, not the dollar number. A 4% rise in the index over a quarter tells you the crypto-native hiring premium is widening; the actual dollar median stays private.
-
-## Data begins 2026-05-20
-
-This canary started collecting on **2026-05-20**. The index is anchored at **100 = 2026-05-20 p50 disclosed compensation**. All deltas are versus this baseline or trailing rolling windows.
-
-Until enough history accumulates, expect:
-- The first 7 days: WoW delta is noise, not signal
-- The first 30 days: MoM delta is provisional
-- The first 90 days: 90-day delta is the first real trend you can quote
-
-The canary becomes meaningful at 30 days. It becomes publishable as a trend at 90 days.
-
-## The metric
-
-For each daily snapshot:
+How does the median advertised salary-range maximum change within the observed crypto-native employer sample?
 
 ```
-p50(t) = median of comp_max across open listings disclosing comp on day t
-index(t) = (p50(t) / p50(2026-05-20)) × 100
-delta_7d(t) = (index(t) / mean(index over prior 7 days)) - 1
-delta_30d(t) = (index(t) / mean(index over prior 30 days)) - 1
-delta_90d(t) = (index(t) / mean(index over prior 90 days)) - 1
-disclosure_rate(t) = (count of listings disclosing comp on day t) / (count of open listings on day t)
+p50(t) = median extracted salary-range maximum among eligible open listings
+index(t) = p50(t) / p50(baseline observation) × 100
 ```
 
-`comp_max` is used because (a) it's the more frequently-disclosed end of the range and (b) it captures the upper-band signal that drives competition for senior hires.
+This is an **all-role** measure, including engineering, product, sales and finance, across observed locations and employers. The existing index includes all tracked open listings with a usable range, including companies excluded from prospecting. That scope is preserved. It is not a finance-specific series. The index is anchored at the first usable observation on or after 2026-05-20; the actual baseline date is published in metadata. Absolute salary values and company-level salary ranges are not published.
 
-## Data source
+Version 2.0 deltas compare the latest index with the mean of the complete prior 7-, 30- or 90-calendar-day window, excluding the current observation. A missing or unknown day makes that comparison unknown; a window does not become statistically reliable merely because 30 or 90 calendar days have passed. Legacy version 1.0 exports used the previous N observed rows, which could span more than N calendar days when collection was interrupted. Follow snapshot metadata when comparing versions.
 
-The scanner polls public job-board APIs:
-- **Ashby:** `https://api.ashbyhq.com/posting-api/job-board/{slug}` — exposes a `compensation` field on a subset of listings
-- **Greenhouse:** `https://boards-api.greenhouse.io/v1/boards/{slug}/jobs?content=true` — comp is inside the `content` HTML field, regex-extracted
-- **Lever:** does not expose comp in the public API (Lever-hosted companies are silent in this canary)
+## Extraction, sample and disclosure
 
-A JD-text regex extracts comp ranges from formats including `$120,000–$180,000`, `$120K to $180K`, `$120,000 - $180,000`, and `USD 120,000 to 180,000`. Both `comp_min` and `comp_max` are extracted where present.
+The producer extracts salary ranges from supported public job-board fields and description formats. Only parsed ranges contribute; omitted or unsupported formats do not. Source coverage differs across ATS providers and can change with parser updates. The maximum of a disclosed range is the input, not an accepted offer, average employee pay or total compensation.
 
-All data is **public**. No portal logins. No robots.txt bypass. Per-domain rate limiting.
+The disclosure table reports listings with extracted ranges, all observed open listings, and the resulting share. Version 2.0 multi-day rows require every daily observation in the window; otherwise values are unknown. Complete windows contain rounded average counts and mean daily disclosure rates, so the displayed ratio of averages may differ slightly from the average rate. Sample counts and company breadth are shown when supplied; missing company counts remain unknown. No dollar salaries are exposed by this dashboard.
 
-## Target universe
+## Sources and coverage
 
-The canary draws from the same curated target list that powers the other Crypto Canaries: crypto-native middle-market companies (Series B–D, headcount roughly 50–500, last raise <36 months). The target list and scanner code are maintained privately; the methodology above is the canonical specification.
+The private producer polls public Ashby, Greenhouse and Lever job-board feeds and publishes aggregates here. The crypto-native baseline is a selected, evolving employer sample; it is not a census or a representative survey. Company additions, exclusions, title classification, job-board coverage and collection failures can change the sample. Companies without observed eligible jobs are not represented in a JD denominator.
 
-## Caveats and limits
+The baseline is retained separately from any expanded panel of incumbent financial businesses. An incumbent employer must not be added to this series simply to widen market observation. Employer type, infrastructure-provider role and use case are separate attributes in the expanded research panel. A crypto-native firm can also provide financial infrastructure.
 
-- **Disclosure rate is the meta-story.** Today only ~16% of open listings disclose comp. The canary will surface changes in disclosure rate as a separate trend. Rising disclosure means more transparency; falling disclosure means companies are pulling ranges back.
-- **Selection bias by ATS.** Greenhouse-hosted companies disclose comp ~25% of the time; Ashby ~19%; Lever 0%. Companies on Lever (notably Anchorage Digital with 70 open listings) contribute zero comp data. The index reflects the disclosing-companies population, not the entire crypto-native universe.
-- **Selection bias by role.** Currently most disclosed-comp listings are engineering/product/sales roles. Finance roles in particular disclose comp at near-zero rates. The index is a corpus-wide blend, not a finance-specific signal.
-- **First-period anchor.** The index is anchored at 2026-05-20. If that baseline day's disclosed comp was unrepresentative (small sample, outliers), the early-period deltas will be misleading. The methodology accepts this — at scale the noise washes out.
-- **Geographic blend.** Roles span US/Remote/EU. The index is geographic-blend, not US-only.
-- **Currency.** USD only. Non-USD ranges are excluded.
+Daily refresh is the intended cadence. The date shown in the dashboard is the observation date, which can precede publication. A scheduled workflow or recent export is not proof that every employer feed was refreshed successfully. Snapshots live in `data/` and `docs/data/`; the dashboard reads `docs/data/latest.json`.
 
-## What this cannot tell you
+## Interpretation and limits
 
-- A specific company's pay band
-- Whether a specific role is over- or under-paid
-- Cost-of-living-adjusted comp
-- Equity or total-comp shifts (only base salary disclosure is parsed)
+The index is descriptive context. A rise can result from more senior or higher-paying roles entering the sample, geography, employer mix, disclosure practices or actual changes to advertised bands. It cannot isolate a crypto or blockchain talent premium without a comparable outside employer group and matching roles, seniority and locations. It also cannot identify cost-of-living-adjusted pay, equity or total compensation.
 
-## Versioning
+Disclosure measures the parser's observed coverage, not a company's intent to become more or less transparent. A falling rate can reflect newly collected jobs or unsupported formats. Small or changing samples, an unrepresentative baseline and collection gaps remain material limitations even with a long history.
 
-Methodology versions are tracked in this file. Material changes will bump the `version` field in `data/latest.json` and be noted here.
+## Historical continuity
 
-Current version: **1.0** (2026-05-20).
+The original all-role index and anchor are retained. Version 2.0 aligns the disclosure denominator to all tracked open listings, matching the existing salary numerator; older disclosure percentages may have excluded some companies from their denominator and are not directly comparable. The interpretation update removes unsupported talent-premium labels, distinguishes missing values from zero and displays the observation date independently of publication. Changes to parsing, source coverage or window calculation require methodology metadata; old snapshots retain the method used at the time.
+
+## Missing data and historical comparability
+
+An unknown numerator or a zero/unknown denominator produces an unknown percentage, displayed as `—`; it is never interpreted as 0%. Missing calendar dates and unavailable values remain gaps in charts. A measured zero requires a known, positive denominator. Material definition changes can break comparability even where a chart is continuous.
+
+The 2026-09-25 interpretation update removes unsupported success/failure verdicts. Version 2.0 producer snapshots identify the updated methodology in metadata; older snapshots retain their original version. Original aggregate series and URLs remain available. Generated snapshots are published by the producer, not fabricated by the dashboard.
 
 ## Reproducibility
 
-You can replicate Comp Pulse if you:
-1. Curate your own list of crypto-native middle-market companies + their ATS slugs.
-2. Poll their public job-board APIs daily.
-3. Regex-extract `$XXX,XXX – $YYY,YYY` style ranges from job descriptions.
-4. Compute the daily p50 of `comp_max`, then index and delta per the formulas above.
-
-The methodology above is the canonical specification.
+Replicate the selected employer feeds, eligibility rules, title and text patterns, and snapshot date. Keep dated counts and denominators together. Save unique-job and company counts at collection time; do not derive old coverage from today’s database. The private producer owns collection and aggregation; this repository renders the published aggregates.

@@ -147,3 +147,13 @@ a:hover { text-decoration: underline; }
   font-size: 0.85rem;
   color: var(--text-secondary);
 }
+
+/* Observation context and wider demand tables. */
+.chart-caption { color: var(--text-secondary); font-size: 0.9rem; margin: 0.75rem 0 1.25rem; }
+.score-display { flex-wrap: wrap; }
+.score-label { font-size: 1.1rem; }
+.subsector-name { overflow-wrap: anywhere; }
+@media (max-width: 640px) {
+  .subsector-table { table-layout: fixed; }
+  .subsector-table th, .subsector-table td { overflow-wrap: anywhere; padding: 0.5rem 0.35rem; }
+}

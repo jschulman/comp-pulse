@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Comp Pulse</title>
-  <meta name="description" content="Tracking compensation drift in crypto-native middle-market hiring — directional data only, never absolute salaries. Open data, no tracking.">
+  <meta name="description" content="Tracking advertised salary-range maxima across roles at crypto-native companies. Open data, no tracking.">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -13,7 +13,7 @@
   <header class="site-header">
     <div class="container">
       <h1 class="site-title">Comp Pulse</h1>
-      <p class="site-subtitle">Tracking compensation drift in crypto-native middle-market hiring — direction, not dollars</p>
+      <p class="site-subtitle">Tracking advertised salary-range maxima across roles at crypto-native companies</p>
       <p class="last-updated" id="last-updated">Last updated: loading…</p>
     </div>
   </header>
@@ -35,23 +35,25 @@
       <!-- Three deltas side by side -->
       <div class="delta-row" id="delta-row">
         <div class="delta-card">
-          <div class="delta-label">Week over week</div>
+          <div class="delta-label" id="delta-label-7d">Versus prior 7-day mean</div>
           <div class="delta-value" id="delta-7d">—</div>
         </div>
         <div class="delta-card">
-          <div class="delta-label">Month over month</div>
+          <div class="delta-label" id="delta-label-30d">Versus prior 30-day mean</div>
           <div class="delta-value" id="delta-30d">—</div>
         </div>
         <div class="delta-card">
-          <div class="delta-label">90 days</div>
+          <div class="delta-label" id="delta-label-90d">Versus prior 90-day mean</div>
           <div class="delta-value" id="delta-90d">—</div>
         </div>
       </div>
     </section>
 
+    <p class="chart-caption" id="sample-note"></p>
+
     <!-- Index time series -->
     <section class="chart-section">
-      <h2 class="section-title">Comp Index Over Time</h2>
+      <h2 class="section-title">Advertised Salary-Range Index Over Time</h2>
       <div class="chart-wrap">
         <canvas id="timeline-chart" height="240"></canvas>
       </div>
@@ -60,12 +62,12 @@
 
     <!-- Disclosure rate sidecar -->
     <section class="table-section">
-      <h2 class="section-title">Comp Disclosure Rate (meta-signal)</h2>
+      <h2 class="section-title">Salary Range Disclosure</h2>
       <table class="subsector-table" id="disclosure-table">
         <thead>
           <tr>
             <th>Period</th>
-            <th class="subsector-numeric">Listings disclosing comp</th>
+            <th class="subsector-numeric">Listings with extracted ranges</th>
             <th class="subsector-numeric">Disclosure rate</th>
           </tr>
         </thead>
@@ -74,6 +76,8 @@
         </tbody>
       </table>
     </section>
+    <p class="chart-caption" id="method-note"></p>
+    <p class="chart-caption">This crypto-native baseline is a selected employer sample. It does not measure blockchain adoption across banks, brokers, payment processors, or other incumbent businesses.</p>
   </main>
 
   <footer class="site-footer">
@@ -84,6 +88,10 @@
         <a href="https://jschulman.github.io/crypto-tool-curve">crypto-tool-curve</a>
         <a href="https://jschulman.github.io/compliance-canary">compliance-canary</a>
         <a href="https://jschulman.github.io/comp-pulse">comp-pulse</a>
+      </div>
+      <div class="canaries-row">
+        <a href="https://jschulman.github.io/stablecoin-signal/#financial-rails">Financial Rails</a>
+        <a href="https://jayschulman.com/blockchain#incumbent-panel">Incumbent employer panel</a>
       </div>
       <div>Sibling to <strong>The Canaries</strong></div>
       <div class="canaries-row">
