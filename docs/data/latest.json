@@ -1,20 +1,20 @@
 {
   "metadata": {
     "source": "Comp Pulse",
-    "last_updated": "2026-10-05",
-    "as_of_date": "2026-10-05",
-    "generated_at": "2026-10-05T08:30:01.896Z",
+    "last_updated": "2026-10-06",
+    "as_of_date": "2026-10-06",
+    "generated_at": "2026-10-06T08:30:02.450Z",
     "baseline_date": "2026-05-20",
     "version": "2.0",
     "next_update": "daily at 03:00 America/Chicago",
     "note": "Calendar-day comparisons require complete observations. Unknown observations are gaps. Changing role and geography mix can move this index; it does not measure a specialist pay premium."
   },
   "headline": {
-    "index": 112.5,
-    "delta_7d": 0.0096,
-    "delta_30d": 0.0126,
+    "index": 110,
+    "delta_7d": -0.016,
+    "delta_30d": -0.0099,
     "delta_90d": null,
-    "history_days": 136,
+    "history_days": 137,
     "label": "Disclosed salary-band maximum index (100 = 2026-05-20); all roles, not a specialist pay premium."
   },
   "timeseries": [
@@ -561,26 +561,30 @@
     {
       "date": "2026-10-05",
       "index": 112.5
+    },
+    {
+      "date": "2026-10-06",
+      "index": 110
     }
   ],
   "disclosure_history": [
     {
       "period": "latest observation",
-      "n_with_comp": 619,
-      "n_open": 5105,
-      "rate": 0.1213
+      "n_with_comp": 629,
+      "n_open": 5108,
+      "rate": 0.1231
     },
     {
       "period": "7-day average",
-      "n_with_comp": 628,
-      "n_open": 5036,
-      "rate": 0.1246
+      "n_with_comp": 627,
+      "n_open": 5046,
+      "rate": 0.1242
     },
     {
       "period": "30-day average",
-      "n_with_comp": 603,
-      "n_open": 4822,
-      "rate": 0.1251
+      "n_with_comp": 605,
+      "n_open": 4844,
+      "rate": 0.125
     }
   ]
 }
