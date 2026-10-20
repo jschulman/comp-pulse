@@ -1,9 +1,9 @@
 {
   "metadata": {
     "source": "Comp Pulse",
-    "last_updated": "2026-10-19",
-    "as_of_date": "2026-10-19",
-    "generated_at": "2026-10-19T08:30:01.662Z",
+    "last_updated": "2026-10-20",
+    "as_of_date": "2026-10-20",
+    "generated_at": "2026-10-20T08:30:03.499Z",
     "baseline_date": "2026-05-20",
     "version": "2.0",
     "next_update": "daily at 03:00 America/Chicago",
@@ -12,9 +12,9 @@
   "headline": {
     "index": 112.5,
     "delta_7d": 0,
-    "delta_30d": 0.0086,
-    "delta_90d": 0.0099,
-    "history_days": 150,
+    "delta_30d": 0.0078,
+    "delta_90d": 0.0098,
+    "history_days": 151,
     "label": "Disclosed salary-band maximum index (100 = 2026-05-20); all roles, not a specialist pay premium."
   },
   "timeseries": [
@@ -617,25 +617,29 @@
     {
       "date": "2026-10-19",
       "index": 112.5
+    },
+    {
+      "date": "2026-10-20",
+      "index": 112.5
     }
   ],
   "disclosure_history": [
     {
       "period": "latest observation",
-      "n_with_comp": 623,
-      "n_open": 4772,
-      "rate": 0.1306
+      "n_with_comp": 622,
+      "n_open": 4822,
+      "rate": 0.129
     },
     {
       "period": "7-day average",
-      "n_with_comp": 624,
-      "n_open": 4767,
-      "rate": 0.1309
+      "n_with_comp": 623,
+      "n_open": 4773,
+      "rate": 0.1306
     },
     {
       "period": "30-day average",
       "n_with_comp": 624,
-      "n_open": 4925,
+      "n_open": 4922,
       "rate": 0.1269
     }
   ]
